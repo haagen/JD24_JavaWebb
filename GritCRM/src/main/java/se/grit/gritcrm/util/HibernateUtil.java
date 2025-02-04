@@ -5,6 +5,7 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
     private static SessionFactory sessionFactory = buildSessionFactory();
@@ -15,14 +16,17 @@ public class HibernateUtil {
         {
             if (sessionFactory == null)
             {
-                StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder()
-                        .configure("hibernate.cfg.xml").build();
-
-                Metadata metaData = new MetadataSources(standardRegistry)
-                        .getMetadataBuilder()
-                        .build();
-
-                sessionFactory = metaData.getSessionFactoryBuilder().build();
+                Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
+                if(System.getenv("DB_URL") != null) {
+                    configuration.setProperty( "hibernate.connection.url", System.getenv("DB_URL"));
+                }
+                if(System.getenv("DB_USERNAME") != null) {
+                    configuration.setProperty("hibernate.connection.username", System.getenv("DB_USERNAME"));
+                }
+                if(System.getenv("DB_PASSWORD") != null) {
+                    configuration.setProperty("hibernate.connection.password", System.getenv("DB_PASSWORD"));
+                }
+                sessionFactory = configuration.buildSessionFactory();
             }
             return sessionFactory;
         } catch (Throwable ex) {
