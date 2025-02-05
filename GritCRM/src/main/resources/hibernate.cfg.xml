@@ -22,6 +22,8 @@
             This is our enteties (tables)
         -->
         <mapping class="se.grit.gritcrm.model.User" />
+        <mapping class="se.grit.gritcrm.model.Account" />
+        <mapping class="se.grit.gritcrm.model.Contact" />
 
     </session-factory>
 </hibernate-configuration>

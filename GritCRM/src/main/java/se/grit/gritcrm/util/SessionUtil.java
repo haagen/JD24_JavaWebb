@@ -4,7 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-public class SessionUtils {
+public class SessionUtil {
 
     public static Boolean isAuthenticated(HttpServletRequest request) {
         HttpSession session = request.getSession(false);

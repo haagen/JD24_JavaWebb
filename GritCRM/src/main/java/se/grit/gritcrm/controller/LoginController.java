@@ -61,7 +61,7 @@ public class LoginController extends HttpServlet {
             }
 
             user.setLastLogin(new Date());
-            //userDAO.update(user);
+            userDAO.update(user);
 
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
