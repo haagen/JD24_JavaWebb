@@ -1,6 +1,5 @@
 package se.grit.gritcrm.controller;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -9,13 +8,29 @@ import jakarta.servlet.http.HttpSession;
 import se.grit.gritcrm.dao.UserDAO;
 import se.grit.gritcrm.model.User;
 import se.grit.gritcrm.util.HashingUtil;
-
-import java.io.IOException;
 import java.util.Date;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) {
+        try {
+            Boolean logout = Boolean.parseBoolean(req.getParameter("logout"));
+            if(logout) {
+                // Let's logout the user
+                HttpSession session = req.getSession(false);
+                if(session != null) {
+                    session.setAttribute("user", null);
+                    session.invalidate();
+                }
+                req.setAttribute("message", "You have been logged out");
+            }
+            req.getRequestDispatcher("/view/login.jsp").forward(req, res);
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) {
@@ -27,8 +42,7 @@ public class LoginController extends HttpServlet {
         String error = "";
 
         if(username.isBlank() || password.isBlank()) {
-            error = "Please fill all the required fields!";
-            error(req, res, error, username);
+            error(req, res, "Please fill all the required fields!", username);
             return;
         }
 
@@ -72,13 +86,3 @@ public class LoginController extends HttpServlet {
     }
 
 }
-
-
-
-
-
-
-
-
-
-

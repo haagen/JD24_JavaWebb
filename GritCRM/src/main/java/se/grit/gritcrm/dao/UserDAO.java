@@ -8,21 +8,10 @@ import se.grit.gritcrm.util.HibernateUtil;
 
 import java.util.List;
 
-public class UserDAO {
+public class UserDAO extends GenericDAO<User, Integer> {
 
-    public void save(User entity){
-        Transaction tx = null;
-        try {
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            tx = session.beginTransaction();
-            session.persist(entity);
-            tx.commit();
-        }catch(Throwable e) {
-            if(tx != null){
-                tx.rollback();
-            }
-            throw e;
-        }
+    public UserDAO(){
+        super(User.class);
     }
 
     public User getUser(String username) throws HibernateException {

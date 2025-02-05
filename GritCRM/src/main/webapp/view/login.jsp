@@ -13,6 +13,11 @@
                     ${error}
                 </div>
             </c:if>
+            <c:if test="${not empty message}">
+                <div class="alert alert-success" role="alert">
+                        ${message}
+                </div>
+            </c:if>
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" id="username" name="username" value="${username}" class="form-control" aria-describedby="usernameHelp">
@@ -28,7 +33,7 @@
             <button type="submit" class="btn btn-primary">Login</button>
 
         </form>
-
+        <p>You do not already have an account, you can <a href="/view/register.jsp">register one here</a>.</p>
     </div>
 </div>
 
