@@ -19,7 +19,7 @@ services:
     networks:
       - app-network
 
- crm:
+  crm:
     image: haagenswe/gritcrm
     container_name: crm-container
     environment:
