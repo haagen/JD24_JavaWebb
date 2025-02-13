@@ -16,6 +16,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) {
         try {
+
             Boolean logout = Boolean.parseBoolean(req.getParameter("logout"));
             if(logout) {
                 // Let's logout the user
@@ -40,6 +41,7 @@ public class LoginController extends HttpServlet {
         String password = req.getParameter("password") == null ? "" :
                 req.getParameter("password");
         String error = "";
+
 
         if(username.isBlank() || password.isBlank()) {
             error(req, res, "Please fill all the required fields!", username);

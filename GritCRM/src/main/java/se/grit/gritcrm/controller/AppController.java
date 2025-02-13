@@ -16,16 +16,9 @@ public class AppController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
-        /*
-        User u = new User();
-        u.setUsername("haagen");
-        u.setPassword(HashingUtil.Encrypt("password"));
-        UserDAO udao = new UserDAO();
-        udao.save(u);
-         */
-
         HttpSession session = req.getSession(false);
         try {
+
             if(session == null || session.getAttribute("user") == null) {
                 req.getRequestDispatcher("view/login.jsp").forward(req, res);
             } else {

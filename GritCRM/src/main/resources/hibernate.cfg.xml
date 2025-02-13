@@ -4,10 +4,18 @@
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
+        <!--
+            MySQL: com.mysql.cj.jdbc.Driver
+            PostgreSQL: org.postgresql.Driver
+        -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/GritCRM?useSSL=false</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">rootpassword</property>
+        <!--
+            MySQL: org.hibernate.dialect.MySQLDialect
+            PostgreSQL: org.hibernate.dialect.PostgreSQLDialect
+        -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.transaction.coordinator_class">jdbc</property>
         <property name="show_sql">true</property>
@@ -15,7 +23,7 @@
             Possible values
             validate, create-only, drop, update, create, create-drop, none
 
-            We use none since we allready created the table using SQL
+            We use none since we already created the table using SQL
         -->
         <property name="hbm2ddl.auto">update</property>
         <!--

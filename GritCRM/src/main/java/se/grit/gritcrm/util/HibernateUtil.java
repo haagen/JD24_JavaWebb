@@ -26,6 +26,12 @@ public class HibernateUtil {
                 if(System.getenv("DB_PASSWORD") != null) {
                     configuration.setProperty("hibernate.connection.password", System.getenv("DB_PASSWORD"));
                 }
+                if(System.getenv("DB_DRIVER") != null) {
+                    configuration.setProperty("hibernate.connection.driver_class", System.getenv("DB_DRIVER"));
+                }
+                if(System.getenv("DB_DIALECT") != null) {
+                    configuration.setProperty("hibernate.dialect", System.getenv("DB_DIALECT"));
+                }
                 sessionFactory = configuration.buildSessionFactory();
             }
             return sessionFactory;

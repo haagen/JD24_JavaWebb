@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="pageTitle" value="GritCRM - Contact" />
 <%@ include file="/WEB-INF/fragments/header.jsp" %>
 <%@ include file="/WEB-INF/fragments/navbar.jsp" %>
 

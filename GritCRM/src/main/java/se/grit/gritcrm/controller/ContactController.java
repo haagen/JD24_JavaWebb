@@ -23,6 +23,7 @@ public class ContactController extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 
         try {
+
             if (!SessionUtil.isAuthenticated(request)) {
                 SessionUtil.redirectToLogin(request, response);
                 return;
@@ -90,6 +91,7 @@ public class ContactController extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
         try {
+
             if (!SessionUtil.isAuthenticated(request)) {
                 SessionUtil.redirectToLogin(request, response);
                 return;
